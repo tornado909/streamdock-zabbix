@@ -1,0 +1,48 @@
+{
+  "Name": "StreamDock Zabbix",
+  "Author": "Community contributors",
+  "Version": "1.0.0",
+  "Description": "Read-only Zabbix dashboard item-value widgets for StreamDock",
+  "Category": "Monitoring",
+  "Icon": "icon.png",
+  "CategoryIcon": "icon.png",
+  "CodePath": "plugin.html",
+  "SDKVersion": 1,
+  "OS": [
+    {
+      "Platform": "windows",
+      "MinimumVersion": "7"
+    }
+  ],
+  "Software": {
+    "MinimumVersion": "2.9"
+  },
+  "Actions": [
+    {
+      "UUID": "com.streamdock.zabbix.widget",
+      "Name": "Zabbix: Item widget",
+      "Icon": "metric.png",
+      "Tooltip": "Choose a Zabbix dashboard, page and item-value widget",
+      "States": [
+        {
+          "Image": "metric.png",
+          "FontSize": "10",
+          "TitleAlignment": "bottom"
+        }
+      ],
+      "Settings": {
+        "dashboardId": "",
+        "pageId": "",
+        "widgetId": "",
+        "customLabel": ""
+      },
+      "UserTitleEnabled": false,
+      "SupportedInMultiActions": false,
+      "Controllers": [
+        "Keypad",
+        "Information"
+      ],
+      "PropertyInspectorPath": "inspector.html"
+    }
+  ]
+}

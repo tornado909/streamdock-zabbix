@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: windows-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Python offline tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Installer smoke test
+        shell: pwsh
+        run: ./tests/install_smoke.ps1
+
+      - name: Configuration smoke test
+        shell: pwsh
+        run: ./tests/configure_smoke.ps1
+
+      - name: Check plugin JavaScript syntax
+        shell: pwsh
+        run: |
+          node --check ./plugin/com.streamdock.zabbix.sdPlugin/plugin.js
+          node --check ./plugin/com.streamdock.zabbix.sdPlugin/inspector.js
+
+      - name: Compile backend Python
+        run: python -m compileall -q src

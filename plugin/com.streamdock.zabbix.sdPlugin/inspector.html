@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>StreamDock Zabbix · Item widget</title>
+<style>
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 12px; background: #25272a; color: #ededed; font: 13px/1.4 "Segoe UI", Arial, sans-serif; }
+h3 { font-size: 14px; margin: 2px 0 14px; font-weight: 600; }
+.field { margin: 0 0 13px; }
+label { display: block; margin-bottom: 5px; color: #d5d8dc; font-weight: 600; }
+input, select, button { font: inherit; border-radius: 4px; }
+input, select { display: block; width: 100%; min-height: 32px; padding: 6px 8px; background: #383b40; color: white; border: 1px solid #565a61; }
+input:focus,select:focus { border-color: #76a8e6; outline: 0; }
+select:disabled, input:disabled { opacity: .6; }
+.row { display: flex; align-items: end; gap: 6px; }
+.row input { flex: 1; min-width: 0; }
+button { background: #42464c; color: white; border: 1px solid #666b72; min-height: 32px; padding: 5px 11px; cursor: pointer; }
+button:hover:not(:disabled) { background: #525961; }
+button:disabled { opacity: .5; cursor: default; }
+button.primary { display: block; width: 100%; background: #336e4d; border-color: #40855d; font-weight: 600; }
+button.primary:hover:not(:disabled) { background: #40865d; }
+.note { color: #9da4ad; font-size: 11px; line-height: 1.4; margin: 5px 0 0; }
+#message { min-height: 21px; margin: 8px 0 10px; color: #b9cadb; white-space: normal; overflow-wrap: anywhere; }
+#message.error { color: #ffaaa7; }
+#preview { margin-top: 11px; min-height: 65px; border: 1px solid #565b62; padding: 10px; background: #3a4045; text-align: center; color: white; border-radius: 4px; }
+#previewValue { font-size: 23px; font-weight: 700; line-height: 1.2; }
+#previewLabel { font-size: 12px; white-space: pre-line; }
+</style>
+</head>
+<body>
+<h3 data-i18n>Zabbix · Item value</h3>
+<div class="field">
+  <label data-i18n for="dashboards">Dashboard</label>
+  <select id="dashboards"><option value="">Loading...</option></select>
+</div>
+<div class="field">
+  <label data-i18n for="dashboardId">Or enter Dashboard ID</label>
+  <div class="row">
+    <input id="dashboardId" type="text" inputmode="numeric" pattern="[0-9]+" placeholder="Example: 1" data-i18n-placeholder autocomplete="off" spellcheck="false">
+    <button id="openDashboard" type="button" data-i18n>Open</button>
+  </div>
+</div>
+<div class="field">
+  <label data-i18n for="pages">Dashboard page</label>
+  <select id="pages" disabled><option value="">Select Dashboard</option></select>
+</div>
+<div class="field">
+  <label data-i18n for="widgets">Item value widget</label>
+  <select id="widgets" disabled><option value="">Select page</option></select>
+  <p class="note" id="widgetCount"></p>
+</div>
+<div class="field">
+  <label data-i18n for="customLabel">Custom label (optional)</label>
+  <input id="customLabel" type="text" placeholder="Default from Zabbix" data-i18n-placeholder maxlength="100" spellcheck="false">
+</div>
+<button class="primary" type="button" id="apply" disabled data-i18n>Save selection</button>
+<div id="message" role="status" aria-live="polite"></div>
+<div id="preview" hidden>
+  <div id="previewValue"></div>
+  <div id="previewLabel"></div>
+</div>
+<p class="note" data-i18n>Widgets and colors come from Zabbix. Credentials stay encrypted on Windows.</p>
+<script src="inspector.js"></script>
+</body>
+</html>

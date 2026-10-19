@@ -1,0 +1,42 @@
+# Local settings and credentials
+settings.json
+*.dpapi
+*.token
+.env
+.env.*
+!config.example.json
+
+# Imported device profiles and Zabbix data
+*.sdProfile/
+*.sdProfile
+**/profiles/
+*discovery*report*.json
+*dashboard*report*.json
+*_dump.json
+*credentials*.json
+!config.example.json
+logs/
+**/logs/
+backup/
+**/backup/
+
+# Python and development
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.log
+
+# Private captures and build artifacts
+*.zip
+*.7z
+*.tar.gz
+*.png.tmp
+dist/
+build/
+screenshots/
